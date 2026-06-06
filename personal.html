@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ink: #111;
+      --muted: #555;
+      --rule: #ccc;
+      --bg: #faf9f7;
+      --link: #111;
+      --link-visited: #444;
+      --max: 640px;
+      --gap: 1.5rem;
+    }
+
+    /* ── Dark mode (system preference) ── */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ink: #e8e4dc;
+        --muted: #888;
+        --rule: #333;
+        --bg: #181714;
+        --link: #e8e4dc;
+        --link-visited: #999;
+      }
+    }
+
+    /* ── Dark mode (manual override) ── */
+    [data-theme="dark"] {
+      --ink: #e8e4dc;
+      --muted: #888;
+      --rule: #333;
+      --bg: #181714;
+      --link: #e8e4dc;
+      --link-visited: #999;
+    }
+
+    [data-theme="light"] {
+      --ink: #111;
+      --muted: #555;
+      --rule: #ccc;
+      --bg: #faf9f7;
+      --link: #111;
+      --link-visited: #444;
+    }
+
+    html {
+      font-size: 18px;
+      background: var(--bg);
+      color: var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Toggle button ── */
+    #theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding: 0;
+      float: right;
+      margin-top: 0.15rem;
+      letter-spacing: 0.01em;
+    }
+
+    #theme-toggle:hover {
+      color: var(--ink);
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      line-height: 1.55;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    /* ── Masthead ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    header .wordmark {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    header .tagline {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Nav ── */
+    nav {
+      margin-bottom: 1.75rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: var(--ink);
+    }
+
+    /* ── Section heading ── */
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      margin-top: 2rem;
+    }
+
+    /* ── Story list ── */
+    ul.stories {
+      list-style: none;
+      border-top: 1px solid var(--rule);
+    }
+
+    ul.stories li {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.65rem 0;
+    }
+
+    ul.stories li a {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--link);
+      text-decoration: none;
+      line-height: 1.4;
+    }
+
+    ul.stories li a:visited {
+      color: var(--link-visited);
+    }
+
+    ul.stories li a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    ul.stories li .byline {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.1rem;
+    }
+
+    /* ── Featured (first item) ── */
+    ul.stories li.featured a {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 3rem;
+      padding-top: 0.75rem;
+      border-top: 2px solid var(--ink);
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button id="theme-toggle" aria-label="Toggle dark mode">&#9790; dark</button>
+    <div class="wordmark">Matt Elliott-Williams</div>
+    <div class="tagline">Text-only version &mdash; low-bandwidth edition</div>
+  </header>
+
+  <nav>
+    <a href="#">News</a>
+    <a href="#">Politics</a>
+    <a href="#">Culture</a>
+    <a href="#">Science</a>
+    <a href="#">Music</a>
+    <a href="#">Podcasts</a>
+  </nav>
+
+  <p class="section-label">Top Stories</p>
+  <ul class="stories">
+    <li class="featured">
+      <a href="#">Senate advances sweeping budget bill as negotiators work through night to resolve holdouts</a>
+      <div class="byline">Claudia Grisales &middot; 3 hours ago</div>
+    </li>
+    <li>
+      <a href="#">Federal Reserve holds rates steady, signals it needs more data before cutting</a>
+      <div class="byline">Scott Horsley &middot; 4 hours ago</div>
+    </li>
+    <li>
+      <a href="#">Aid groups warn of acute famine conditions in northern Gaza as ceasefire talks stall</a>
+      <div class="byline">Daniel Estrin &middot; 5 hours ago</div>
+    </li>
+    <li>
+      <a href="#">Supreme Court takes up case that could reshape how agencies enforce environmental rules</a>
+      <div class="byline">Nina Totenberg &middot; 6 hours ago</div>
+    </li>
+    <li>
+      <a href="#">Measles cases climb in three states; CDC urges parents to check vaccination records</a>
+      <div class="byline">Pien Huang &middot; 7 hours ago</div>
+    </li>
+  </ul>
+
+  <p class="section-label">Politics &amp; Policy</p>
+  <ul class="stories">
+    <li>
+      <a href="#">What&rsquo;s inside the reconciliation bill &mdash; and what got cut at the last minute</a>
+      <div class="byline">Deirdre Walsh &middot; 2 hours ago</div>
+    </li>
+    <li>
+      <a href="#">Trump administration moves to overhaul federal civil service protections</a>
+      <div class="byline">Domenico Montanaro &middot; 8 hours ago</div>
+    </li>
+    <li>
+      <a href="#">House speaker faces pressure from both flanks on spending compromise</a>
+      <div class="byline">Susan Davis &middot; 9 hours ago</div>
+    </li>
+  </ul>
+
+  <p class="section-label">Science &amp; Health</p>
+  <ul class="stories">
+    <li>
+      <a href="#">Bird flu detected in dairy herds across two new states, raising concerns about spread</a>
+      <div class="byline">Michaeleen Doucleff &middot; 5 hours ago</div>
+    </li>
+    <li>
+      <a href="#">A new Alzheimer&rsquo;s drug shows modest benefit in slowing decline, researchers say</a>
+      <div class="byline">Allison Aubrey &middot; 1 day ago</div>
+    </li>
+    <li>
+      <a href="#">Webb telescope captures earliest known galaxy, pushing back cosmic timeline</a>
+      <div class="byline">Nell Greenfieldboyce &middot; 1 day ago</div>
+    </li>
+  </ul>
+
+  <p class="section-label">Arts &amp; Culture</p>
+  <ul class="stories">
+    <li>
+      <a href="#">The quiet resurgence of the American piano recital</a>
+      <div class="byline">Tom Moon &middot; 12 hours ago</div>
+    </li>
+    <li>
+      <a href="#">A new translation of Proust tries to capture what previous ones have missed</a>
+      <div class="byline">Maureen Corrigan &middot; 1 day ago</div>
+    </li>
+    <li>
+      <a href="#">Director Ari Aster on slowness, dread, and why he still shoots on film</a>
+      <div class="byline">Terry Gross &middot; 2 days ago</div>
+    </li>
+  </ul>
+
+  <footer>
+    &copy; 2026 NPR &mdash; <a href="#">Full site</a> &mdash; <a href="#">About</a> &mdash; <a href="#">Contact</a>
+    <br>This text-only page loads faster and uses less data.
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+
+    // Detect system preference as starting point
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let dark = prefersDark;
+
+    function applyTheme() {
+      root.setAttribute('data-theme', dark ? 'dark' : 'light');
+      btn.textContent = dark ? '○ light' : '☾ dark';
+    }
+
+    applyTheme();
+
+    btn.addEventListener('click', () => {
+      dark = !dark;
+      applyTheme();
+    });
+  </script>
+</body>
+</html>

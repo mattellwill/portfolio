@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matt Elliott-Williams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ink: #111;
+      --muted: #555;
+      --rule: #ccc;
+      --bg: #faf9f7;
+      --link: #111;
+      --link-visited: #444;
+      --max: 640px;
+      --gap: 1.5rem;
+    }
+
+    /* ── Dark mode (system preference) ── */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ink: #e8e4dc;
+        --muted: #888;
+        --rule: #333;
+        --bg: #181714;
+        --link: #e8e4dc;
+        --link-visited: #999;
+      }
+    }
+
+    /* ── Dark mode (manual override) ── */
+    [data-theme="dark"] {
+      --ink: #e8e4dc;
+      --muted: #888;
+      --rule: #333;
+      --bg: #181714;
+      --link: #e8e4dc;
+      --link-visited: #999;
+    }
+
+    [data-theme="light"] {
+      --ink: #111;
+      --muted: #555;
+      --rule: #ccc;
+      --bg: #faf9f7;
+      --link: #111;
+      --link-visited: #444;
+    }
+
+    html {
+      font-size: 18px;
+      background: var(--bg);
+      color: var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Toggle button ── */
+    #theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding: 0;
+      float: right;
+      margin-top: 0.15rem;
+      letter-spacing: 0.01em;
+    }
+
+    #theme-toggle:hover {
+      color: var(--ink);
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      line-height: 1.55;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Masthead ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    header .wordmark {
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: lowercase;
+    }
+
+    header .wordmark a {
+      font-size: inherit;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header .tagline {
+      font-size: 1.3rem;
+      color: var(--muted);
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+    header .tagline a {
+      font-size: inherit;
+      color: inherit;
+      display: inline;
+    }
+
+    /* ── Nav ── */
+    nav {
+      margin-bottom: 1.75rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: var(--ink);
+    }
+
+    /* ── Section heading ── */
+    .section-label {
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      text-transform: lowercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      margin-top: .1rem;
+    }
+
+    /* ── Story list ── */
+    ul.stories {
+      list-style: none;
+      border-top: 1px solid var(--rule);
+    }
+
+    ul.stories li {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.65rem 0;
+    }
+
+    ul.stories li a {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--link);
+      text-decoration: none;
+      line-height: 1.4;
+    }
+
+    ul.stories li a:visited {
+      color: var(--link-visited);
+    }
+
+    ul.stories li a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    ul.stories li .byline {
+      font-size: 1rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.1rem;
+    }
+
+    /* ── Featured (first item) ── */
+    ul.stories li.featured a {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    /* __ a links __ */
+    a {
+      font-size: 1rem;
+      font-weight: 400;
+      color: inherit;
+      text-decoration: none;
+      line-height: 1.4;
+    }
+
+    a:visited {
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 0.7em;
+      border-top: 2px solid var(--ink);
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button id="theme-toggle" aria-label="Toggle dark mode">&#9790; dark</button>
+    <div class="wordmark"><a href="index.html">Matt Elliott-Williams</a></div>
+    <div class="tagline">Austin, TX  &middot; <a href="mailto:matthewclaywilliams@gmail.com">Email</a> &middot; <a href="https://www.linkedin.com/in/matthewwphd/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &middot; <a href="work-resume.pdf" target="_blank" rel="noopener noreferrer">R&eacute;sum&eacute;</a></div>
+  </header>
+
+
+  <p class="section-label">pages, arranged as follows</p>
+  
+  <ul class="stories">
+    <li>
+      <a href="#">Music Study Hall</a>
+      <div class="byline">(page coming soon) Learn more about music theory &amp; history lessons and how to schedule.</div>
+    </li>
+
+    <li>
+      <a href="ld-1.html">Learning &amp; Development Portfolio</a>
+      <div class="byline">Your team's missing piece&mdash;find out why.</div>
+    </li>
+
+    <li>
+      <a href="#">Personal Blog</a>
+      <div class="byline">(page coming soon) My musings on various topics.</div>
+    </li>
+  </ul>
+  <footer>
+    <p class="section-label">&copy; 2026 Matt Elliott-Williams</p>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+
+    // Detect system preference as starting point
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let dark = prefersDark;
+
+    function applyTheme() {
+      root.setAttribute('data-theme', dark ? 'dark' : 'light');
+      btn.textContent = dark ? '○ light' : '☾ dark';
+    }
+
+    applyTheme();
+
+    btn.addEventListener('click', () => {
+      dark = !dark;
+      applyTheme();
+    });
+  </script>
+</body>
+</html>

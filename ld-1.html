@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L&amp;D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ink: #111;
+      --muted: #555;
+      --rule: #ccc;
+      --bg: #faf9f7;
+      --link: #111;
+      --link-visited: #444;
+      --max: 640px;
+      --gap: 1.5rem;
+    }
+
+    /* ── Dark mode (system preference) ── */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ink: #e8e4dc;
+        --muted: #888;
+        --rule: #333;
+        --bg: #181714;
+        --link: #e8e4dc;
+        --link-visited: #999;
+      }
+    }
+
+    /* ── Dark mode (manual override) ── */
+    [data-theme="dark"] {
+      --ink: #e8e4dc;
+      --muted: #888;
+      --rule: #333;
+      --bg: #181714;
+      --link: #e8e4dc;
+      --link-visited: #999;
+    }
+
+    [data-theme="light"] {
+      --ink: #111;
+      --muted: #555;
+      --rule: #ccc;
+      --bg: #faf9f7;
+      --link: #111;
+      --link-visited: #444;
+    }
+
+    html {
+      font-size: 18px;
+      background: var(--bg);
+      color: var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Toggle button ── */
+    #theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding: 0;
+      float: right;
+      margin-top: 0.15rem;
+      letter-spacing: 0.01em;
+    }
+
+    #theme-toggle:hover {
+      color: var(--ink);
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      line-height: 1.55;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Masthead ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    header .wordmark {
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: lowercase;
+    }
+
+    header .wordmark a {
+      font-size: inherit;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header .tagline {
+      font-size: 1.3rem;
+      color: var(--muted);
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+     header .tagline a {
+      font-size: inherit;
+      color: inherit;
+      display: inline;
+    }
+    
+
+    /* ── Nav ── */
+    nav {
+      margin-bottom: 1.75rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: var(--ink);
+    }
+
+    /* ── Section heading ── */
+    .section-label {
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      text-transform: lowercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      margin-top: .1rem;
+    }
+
+    /* ── Story list ── */
+    ul.stories {
+      list-style: none;
+      border-top: 1px solid var(--rule);
+    }
+
+    ul.stories li {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.65rem 0;
+    }
+
+   /* -- Story title (plain text, not a link) -- */
+    ul.stories li .story-title {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+       
+       ul.stories li .byline {
+      font-size: 1rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.1rem;
+    }
+
+    ul.stories li .byline2 {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+
+    ul.stories li .byline2 a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    ul.stories li .byline2 a:visited {
+      color: var(--link-visited);
+    }
+
+    ul.stories li .byline2 a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+   
+    /* ── Featured (first item) ── */
+    ul.stories li.featured .story-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    /* __ a links __ */
+    a {
+      font-size: 1rem;
+      font-weight: 400;
+      color: inherit;
+      text-decoration: none;
+      line-height: 1.4;
+    }
+
+    a:visited {
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 0.7em;
+      border-top: 2px solid var(--ink);
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+    <button id="theme-toggle" aria-label="Toggle dark mode">&#9790; dark</button>
+    <div class="wordmark"><a href="index.html">Matt Elliott-Williams</a></div>
+    <div class="tagline">Austin, TX  &middot; <a href="mailto:matthewclaywilliams@gmail.com">Email</a> &middot; <a href="https://www.linkedin.com/in/matthewwphd/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &middot; <a href="work-resume.pdf" target="_blank" rel="noopener noreferrer">R&eacute;sum&eacute;</a></div>
+  </header>
+ 
+  <p class="section-label">Learning &amp; Development Portfolio</p>
+  
+  <ul class="stories">
+    <li>
+      <span class="story-title">Live Training Decks</span>
+           
+      <div class="byline2"><a href="salescoach-deck.pdf" target="_blank" rel="noopener noreferrer">Salesforce Agentforce Sales Coach</a></div>
+  
+      <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; padding-left: 1em;">Designed and facilitated a training session for 50+ reps ahead of a new Salesforce AI tooling rollout. The challenge: reps were skeptical of AI-assisted coaching and time-to-adoption was a business priority.</div>
+    <br>
+      <div class="byline2"><a href="gongdash-deck.pdf" target="_blank" rel="noopener noreferrer">Gong Dashboard Updates</a></div>
+
+      <div style="font-family: 'DM Sans', sans-serif; font-size: 14px;padding-left:1em;">Designed and facilitated a training session for Sales and CS leaders introducing a new Gong analytics dashboard. The challenge: existing reporting required ad-hoc pulls and messy workarounds, and leaders needed a reliable way to connect coaching data to quota outcomes.</div>
+    <br>
+      
+      <div class="byline2"><a href="bossapi-deck.pdf" target="_blank" rel="noopener noreferrer">BOSS Organization Sponsored Job API</a></div>
+
+      <div style="font-family: 'DM Sans', sans-serif; font-size: 14px;padding-left:1em;">Designed and facilitated training materials for support teams ahead of Indeed's new Sponsored Jobs API usage policy rollout. The challenge: reps needed to quickly understand a technically complex billing change and be ready to handle escalations from Sales and CS before the enforcement deadline.</div>
+
+      
+    </li>
+
+    <li>
+      <span class="story-title">Learning Preparation &amp; Cross-Functional Requests</span>
+      <div class="byline2"><a href="seismic-syllabus.pdf" target="_blank" rel="noopener noreferrer">Seismic Stack Syllabus</a> &amp; <a href="seismic-lessonplan.pdf" target="_blank" rel="noopener noreferrer">Seismic Stack Lesson Plan</a></div>
+
+      <div style="font-family: 'DM Sans', sans-serif; font-size: 14px;padding-left:1em;">Designed a 7-session curriculum training ICs across AMER, EMEA, and APAC on the full Seismic tech stack, from static decks to fully dynamic Livedocs. The challenge: learners came in with uneven prerequisite knowledge, and the content had to be practical enough to apply immediately to real-world sales narratives and brand guidelines.</div>
+
+      <br>
+      
+      <div class="byline2"><a href="businesscase-crossfunctional.pdf" target="_blank" rel="noopener noreferrer">Business Case Request for Cross-Functional Project</a></div>
+
+      <div style="font-family: 'DM Sans', sans-serif; font-size: 14px;padding-left:1em;">Wrote a formal business case to secure data team partnership for building and maintaining Tableau dashboards correlating Gong coaching activity to revenue, retention, and productivity. The challenge: the existing reporting infrastructure was fragmented across multiple data sources, and GLE needed a single coherent data story to make the case for Gong's ROI.</div>
+      
+    </li>
+
+    <li>
+      <span class="story-title">Explorations in Pedagogy and Learning Philosophies</span>
+      <div class="byline2"><a href="aspiration-deck.pdf" target="_blank" rel="noopener noreferrer">Aspiration in the Ruins</a></div>
+
+      <div style="font-family: 'DM Sans', sans-serif; font-size: 14px;padding-left:1em;">Designed and delivered a presentation arguing for a decentered, open pedagogy in corporate L&amp;D, drawing on Bill Readings, Agnes Callard, and semiotics to reframe how enablement teams think about accountability, learning objectives, and employee motivation. The challenge: convincing a revenue-focused audience that profit works better as a collateral benefit than a primary variable, without dismissing the legitimacy of business goals.</div>
+
+      <br>
+      
+      <div class="byline2"><a href="Interpretation-deck.pdf" target="_blank" rel="noopener noreferrer">Interpretation</a></div>
+
+      <div style="font-family: 'DM Sans', sans-serif; font-size: 14px;padding-left:1em;">Designed and delivered a standalone presentation translating critical theory, including Susan Sontag, Theodor Adorno and Max Horkheimer, and Susan McClary, into a practical framework for understanding how AI tools interpret and generate meaning in GTM contexts. The challenge: making dense philosophical material actionable for a sales enablement audience without flattening the ideas into buzzwords.</div>
+      
+    </li>
+  </ul>
+  <footer>
+    <p class="section-label">&copy; 2026 Matt Elliott-Williams</p>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+
+    // Detect system preference as starting point
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let dark = prefersDark;
+
+    function applyTheme() {
+      root.setAttribute('data-theme', dark ? 'dark' : 'light');
+      btn.textContent = dark ? '○ light' : '☾ dark';
+    }
+
+    applyTheme();
+
+    btn.addEventListener('click', () => {
+      dark = !dark;
+      applyTheme();
+    });
+  </script>
+</body>
+</html>
